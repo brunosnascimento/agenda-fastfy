@@ -9,6 +9,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
+    // url: process.env.DATABASE_URL!,
     // url: process.env["DATABASE_URL"]!,     // o operador de asserção não nula (!) no final garante ao TS que essa variável vai existir
     url: process.env["DATABASE_URL"] || "",   // um valor de fallback caso a variável falhe
   },
