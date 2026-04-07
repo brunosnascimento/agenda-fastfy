@@ -41,8 +41,15 @@ export async function contactRoutes(fastify: FastifyInstance) {
         }
     });
 
-    // Rota de teste para listar ou verificar status do recurso de contatos
+    // Rota para busca de contatos  
     fastify.get('/', async (request, reply) => {
-        return reply.send({ message: 'Contact route is active' });
+        const emailUser = request.headers['email'] as string;
+      try {     
+        const data = await contactUseCase.listAllContacts(emailUser);
+        return reply.send(data);
+      } catch (error) {
+        reply.send(error);
+      }
+      
     });
 }

@@ -45,4 +45,20 @@ export class ContactUseCase {
 
         return result;
     }
+
+    // O método listAllContacts é responsável por listar todos os contatos.
+    async listAllContacts(userEmail: string): Promise<Contact[]> {
+        // 1. Validar se o usuário (dono dos contatos) existe
+        const user = await this.userRepository.findbyEmail(userEmail);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        // 2. Buscar os contatos associados ao usuário
+        const contacts = await this.contactRepository.findAllContacts(user.id);
+
+        return contacts;
+    }
+
 }

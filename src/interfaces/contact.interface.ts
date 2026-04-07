@@ -27,6 +27,7 @@ export interface ContactRepository {
     // O método create é responsável por criar um novo contato. Ele recebe um objeto do tipo ContactCreateData, que contém os dados necessários para criar um contato (como nome, email, telefone e o ID do usuário ao qual o contato pertence). O método retorna uma Promise que resolve para um objeto do tipo Contact, representando o contato criado.
     create(data: ContactCreateData): Promise<Contact>;
     findByEmailOrPhone(email: string, phone: string): Promise<Contact | null>;
+    findAllContacts(userId: string): Promise<Contact[]>;
     // findById(id: string): Promise<Contact | null>;
     // update(id: string, updatedContact: Partial<Omit<Contact, 'id'>>): Promise<Contact | null>;
     // delete(id: string): Promise<boolean>;

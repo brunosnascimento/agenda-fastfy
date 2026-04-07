@@ -27,5 +27,16 @@ export class ContactRepositoryPrisma implements ContactRepository {
         return result || null;
     }
 
+    // O método findAllContacts é responsável por buscar todos os contatos associados a um determinado usuário. Ele recebe o ID do usuário como parâmetro e retorna uma lista de contatos relacionados a esse usuário. A consulta ao banco de dados é feita usando o Prisma, onde a cláusula where é utilizada para filtrar os contatos com base no userId fornecido. O resultado é uma lista de contatos que pertencem ao usuário especificado.    
+    async findAllContacts(userId: string): Promise<Contact[]> {
+        const result = await prisma.contacts.findMany({
+            where: {
+                userId,
+            },
+        });
+        return result;
+    }   
+
+
     // Implementações futuras de busca por ID, atualização e deleção podem ser adicionadas aqui.
 }
