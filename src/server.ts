@@ -6,6 +6,7 @@ import 'dotenv/config';
 import fastify from "fastify";
 import type {FastifyInstance} from "fastify";
 import { userRoutes } from "./routers/user.routes.js";
+import { contactRoutes } from './routers/contact.routes.js';
 
 // O Fastify é um framework web para Node.js que é conhecido por sua alta performance e baixo overhead. Ele é projetado para ser rápido e eficiente, tornando-o uma escolha popular para construir APIs e aplicativos web.
 const app: FastifyInstance = fastify({ logger: true });
@@ -14,6 +15,8 @@ const app: FastifyInstance = fastify({ logger: true });
 // O prefixo '/users' é adicionado a todas as rotas definidas em userRoutes, o que significa que as rotas relacionadas a usuários estarão disponíveis em URLs que começam com '/users' (por exemplo, '/users/' para criar um novo usuário).
 // A função userRoutes é responsável por definir as rotas relacionadas aos usuários. Ela recebe uma instância do Fastify como parâmetro, que é usada para registrar as rotas. Dentro da função, uma instância do UserRepositoryPrisma é criada e passada para o construtor do UserUseCase, permitindo que a lógica de negócio relacionada aos usuários seja desacoplada da implementação do repositório.
 app.register(userRoutes, { prefix: '/users' });
+
+app.register(contactRoutes, { prefix: '/contacts' });
 
 // O método listen é usado para iniciar o servidor e escutar as requisições na porta 3000. Ele aceita um callback que é chamado quando o servidor está pronto para receber requisições ou se ocorrer um erro durante a inicialização.
 app.listen({ port: 3000 }, (err, address) => {
