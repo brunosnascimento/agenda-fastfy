@@ -41,4 +41,15 @@ export async function userRoutes(fastify: FastifyInstance) {
     fastify.get('/', async (request, reply) => {
         return reply.send('Hello World!');
     });
+
+
+    fastify.delete('/:id', async (request, reply) => {
+        const { id } = request.params as { id: string };    
+        // Aqui você pode implementar a lógica para deletar o usuário com base no ID fornecido
+        // Por exemplo, você pode chamar um método do UserUseCase para deletar o usuário do banco de dados
+        // const result = await userUseCase.delete(id);
+        // return reply.send(result);
+        return reply.send(`User with ID ${id} deleted`);
+    });
+
 }

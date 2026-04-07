@@ -61,4 +61,17 @@ export class ContactUseCase {
         return contacts;
     }
 
+    // TODO: se não for possível atualizar o contato, deve retornar um erro indicando que a atualização falhou. Isso é importante para garantir que o cliente receba feedback adequado sobre o resultado da operação de atualização.
+    // Adicionalmente, a implementação do método updateContact deve incluir a lógica para verificar se o contato existe antes de tentar atualizá-lo. Se o contato não for encontrado, um erro deve ser lançado indicando que o contato não existe. Se o contato for encontrado, o método deve chamar o repositório de contatos para realizar a atualização e retornar o contato atualizado. 
+    async updateContact({ id, name, email, phone }: Contact): Promise<Contact> {
+        const data = {
+            id,
+            name,
+            email,
+            phone
+        };
+        return {} as Contact; // Retorna um objeto vazio apenas para satisfazer o tipo de retorno, a implementação real deve ser feita posteriormente.
+    }
+        
+
 }

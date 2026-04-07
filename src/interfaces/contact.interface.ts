@@ -3,6 +3,7 @@ export interface Contact {
     name: string;
     email: string;
     phone: string;
+    userId?: string; // O campo userId é utilizado para associar o contato a um usuário específico. Ele é necessário para garantir que cada contato esteja vinculado a um usuário válido, permitindo a organização e a gestão adequada dos contatos dentro do sistema.
     // address?: string;
     // birthday?: Date;
 }
@@ -28,6 +29,7 @@ export interface ContactRepository {
     create(data: ContactCreateData): Promise<Contact>;
     findByEmailOrPhone(email: string, phone: string): Promise<Contact | null>;
     findAllContacts(userId: string): Promise<Contact[]>;
+    updateContact({ id, name, email, phone }: Contact): Promise<Contact>;
     // findById(id: string): Promise<Contact | null>;
     // update(id: string, updatedContact: Partial<Omit<Contact, 'id'>>): Promise<Contact | null>;
     // delete(id: string): Promise<boolean>;

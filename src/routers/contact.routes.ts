@@ -50,6 +50,21 @@ export async function contactRoutes(fastify: FastifyInstance) {
       } catch (error) {
         reply.send(error);
       }
-      
     });
+
+    fastify.put<{ Body: ContactCreate, Params: { id: string } }>('/:id', async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const { name, email, phone } = request.body;
+        const userEmail = request.headers['email'] as string;
+        try {
+            const data = await contactUseCase.updateContact({ id, name, email, phone });
+            return reply.send(data);
+        } catch (error) {
+            reply.send(error);
+        }   
+    });
+
+    fastify.delete('/:id', async (request, reply) => {
+        return reply.send('Rota de deleção de contato - Em desenvolvimento');
+    }); 
 }

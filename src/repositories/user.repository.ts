@@ -21,5 +21,6 @@ export class UserRepositoryPrisma implements userRepository {
         });
         return result || null;
     }
+
  
 }
