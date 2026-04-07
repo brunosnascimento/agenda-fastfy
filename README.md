@@ -102,5 +102,11 @@ Host: localhost:3000
 email: usuario@exemplo.com
 ```
 
+## 📑 OBS :: Passo a Passo para dev
+
+Para criar uma nova feature, uma possibilidade é seguir os seguintes passos:
+Routes >> UseCases >> Interfaces >> Repositories >> Server (Se tiver uma nova rota - prefix)
+
+
 ---
 Desenvolvido por Bruno Nascimento.
