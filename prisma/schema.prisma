@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Users {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt     // Toda vez que tiver alteração no registro, esse campo será atualizado
+
+  contacts Contacts[]     // Um usuário pode ter vários contatos, e isso é representado por um array de contatos. A relação entre as tabelas é estabelecida usando a anotação @relation, que indica que o campo contacts está relacionado à tabela Contacts. O campo userId na tabela Contacts é a chave estrangeira que referencia o id do usuário na tabela Users.  
+
+  @@map("users")      // Define como será a referência ao objeto
+}
+
+model Contacts {
+    id String @id @default(uuid())
+    name String
+    email String
+    phone String
+    user Users @relation(fields: [userId], references: [id])      // Cada contato pertence a um usuário, e o campo userId é a chave estrangeira que referencia o id do usuário
+    userId String 
+
+  @@map("contacts")
+}
