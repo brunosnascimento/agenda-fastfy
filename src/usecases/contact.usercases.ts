@@ -72,6 +72,13 @@ export class ContactUseCase {
         };
         return {} as Contact; // Retorna um objeto vazio apenas para satisfazer o tipo de retorno, a implementação real deve ser feita posteriormente.
     }
-        
+    
+    async delete(id: string): Promise<boolean> {
+        const result = await this.contactRepository.delete(id);
+        if (!result) {
+            throw new Error('Failed to delete contact');
+        }           
+        return true;
+    }
 
 }

@@ -30,7 +30,8 @@ export interface ContactRepository {
     findByEmailOrPhone(email: string, phone: string): Promise<Contact | null>;
     findAllContacts(userId: string): Promise<Contact[]>;
     updateContact({ id, name, email, phone }: Contact): Promise<Contact>;
+    delete(id: string): Promise<boolean>;
     // findById(id: string): Promise<Contact | null>;
     // update(id: string, updatedContact: Partial<Omit<Contact, 'id'>>): Promise<Contact | null>;
-    // delete(id: string): Promise<boolean>;
+    
 }

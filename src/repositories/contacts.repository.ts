@@ -44,6 +44,14 @@ export class ContactRepositoryPrisma implements ContactRepository {
         });
         return result;
     }
+
+    async delete(id: string): Promise<boolean> {
+        const result = await prisma.contacts.delete({
+            where: { id },
+        });
+        return result ? true : false;
+    }   
+
     
     // Implementações futuras de busca por ID, atualização e deleção podem ser adicionadas aqui.
 }

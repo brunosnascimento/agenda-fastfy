@@ -65,6 +65,15 @@ export async function contactRoutes(fastify: FastifyInstance) {
     });
 
     fastify.delete('/:id', async (request, reply) => {
-        return reply.send('Rota de deleção de contato - Em desenvolvimento');
+        try {
+            const { id } = request.params as { id: string };
+            // Aqui você pode implementar a lógica para deletar o contato com base no ID fornecido
+            // Por exemplo, você pode chamar um método do ContactUseCase para deletar o contato do banco de dados
+            const result = await contactUseCase.delete(id);
+            return reply.send(result);
+            // return reply.send(`Contact with ID ${id} deleted`);
+            } catch (error) {
+                reply.send(error);
+            } 
     }); 
 }
